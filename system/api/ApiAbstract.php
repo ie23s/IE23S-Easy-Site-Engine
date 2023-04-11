@@ -10,7 +10,6 @@ use ie23s\shop\system\System;
 abstract class ApiAbstract implements ApiInterface
 {
     private System $system;
-    private Engine $engine;
     private array $request = [];
     private int $code = 200;
 
@@ -20,16 +19,7 @@ abstract class ApiAbstract implements ApiInterface
     public function __construct(System $system)
     {
         $this->system = $system;
-        $this->engine = $system->getEngine();
         parse_str(file_get_contents("php://input"), $this->request);
-    }
-
-    /**
-     * @return Engine
-     */
-    public function getEngine(): Engine
-    {
-        return $this->engine;
     }
 
     /**

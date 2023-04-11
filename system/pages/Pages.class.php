@@ -8,6 +8,8 @@ require_once __SHOP_DIR__ . "system/pages/Theme.class.php";
 require_once __SHOP_DIR__ . "system/pages/Page.php";
 require_once __SHOP_DIR__ . "system/pages/ErrorPage.class.php";
 
+require_once __SHOP_DIR__ . "system/pages/MainPage.php";
+
 use ie23s\shop\system\Component;
 use ie23s\shop\system\System;
 use Simplon\Mysql\MysqlException;
@@ -63,6 +65,7 @@ class Pages extends Component
         $this->theme->addBlock("theme_path", __SHOP_DIR__ . 'templates/' . $this->theme->getThemeName());
         $this->theme->addBlock("time", time());
 
+        new MainPage('main', $this->getSystem()->getPages(), 'index');
     }
 
     /**

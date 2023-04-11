@@ -102,7 +102,7 @@
                 <h4>
                     Administrator settings
                 </h4>
-                <form action="./admin-register" data-varf="stageDB" method="post" role="form">
+                <form action="./admin-register" data-varf="stageAdmin" method="post" role="form">
                     <div class="alert alert-danger" role="alert" style="display: none">
                     </div>
                     <div class="form-group mb-3">
@@ -198,7 +198,20 @@
     let stageDB = {
         success: function (data, alertm) {
             if (data.startsWith("OK")) {
-
+                $('#stage-db').hide();
+                $('#stage-admin').show();
+            } else {
+                alertm.html(data);
+                alertm.show()
+            }
+        },
+        complete: function () {
+        }
+    }
+    let stageAdmin = {
+        success: function (data, alertm) {
+            if (data.startsWith("OK")) {
+                window.location = '../';
             } else {
                 alertm.html(data);
                 alertm.show()

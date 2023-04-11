@@ -99,13 +99,9 @@ class System
         $this->components["auth"]->load();
         //LAST!
         $this->components["pages"]->load();
-        /**
-         * @var Auth $this- >components["auth"]
-         */
         $this->components["auth"]->loadPages();
         $this->components["api"]->load();
         //Init Shop engine
-        $this->components["sEngine"]->load();
         $this->components["admin"]->load();
         $this->components["files"]->load();
 

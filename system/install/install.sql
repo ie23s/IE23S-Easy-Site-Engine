@@ -36,6 +36,9 @@ CREATE TABLE `groups`
     parent_id INT NULL
 );
 
+INSERT INTO `groups`(`id`, `name`, `parent_id`) VALUES (1,'guest',NULL);
+INSERT INTO `groups`(`id`, `name`, `parent_id`) VALUES (2,'user',1);
+
 CREATE TABLE group_permissions
 (
     id         INT auto_increment PRIMARY KEY,

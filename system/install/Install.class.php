@@ -9,6 +9,7 @@ use Dotenv\Repository\Adapter\ReplacingWriter;
 use Dotenv\Repository\RepositoryBuilder;
 use Exception;
 use ie23s\shop\system\auth\Auth;
+use ie23s\shop\system\auth\user\UserModel;
 use ie23s\shop\system\Component;
 use ie23s\shop\system\config\Config;
 use ie23s\shop\system\database\MySQLMod;
@@ -35,6 +36,9 @@ class Install extends Component
                 }
                 if ($this->path[1] == 'db') {
                     $this->DBConfig();
+                }
+                if ($this->path[1] == 'admin-register') {
+                    $this->adminConfig();
                 }
             } else {
                 echo file_get_contents(__SHOP_DIR__ . 'system/install/index.html');
@@ -128,7 +132,7 @@ class Install extends Component
     /**
      * @throws Exception
      */
-    private function userConfig() {
+    private function adminConfig() {
         //Init Config
         $config = new Config($this->getSystem(), '.config.tmp');
         $config->load();
@@ -141,6 +145,47 @@ class Install extends Component
         $this->getSystem()->addComponent('auth', $auth);
         $db->load();
         $auth->load();
+        $adminGroupID = $auth->getGroup()->createGroup('admin');
+        $auth->getGroup()->addPermission($adminGroupID, '*');
+        foreach ($_POST as $field) {
+            if(empty($field)) {
+                echo "Please fill in all the fields!";
+                return;
+            }
+        }
+        if($_POST['USER_PASS'] != $_POST['USER_PASS_R']){
+            echo "Passwords do not match!";
+            return;
+        }
+        $hash = Auth::hashPassword($_POST['USER_PASS']);
+        $user = new UserModel(0, trim(strtolower($_POST['USER_EMAIL'])), 'Administrator',
+            '', $hash['salt'], $hash['hash'], $adminGroupID);
+        $auth->createUser($user);
+
+        $this->dirDel(__SHOP_DIR__ . "system/install");
+        rename(__SHOP_DIR__ . '.config.tmp', __SHOP_DIR__ . '.config');
+
+        echo 'OK';
+    }
+    function dirDel ($dir)
+    {
+        $d=opendir($dir);
+        while(($entry=readdir($d))!==false)
+        {
+            if ($entry != "." && $entry != "..")
+            {
+                if (is_dir($dir."/".$entry))
+                {
+                    dirDel($dir."/".$entry);
+                }
+                else
+                {
+                    unlink ($dir."/".$entry);
+                }
+            }
+        }
+        closedir($d);
+        rmdir ($dir);
     }
     /**
      * Generate a random string, using a cryptographically secure
