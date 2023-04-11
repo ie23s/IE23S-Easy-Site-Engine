@@ -1,0 +1,28 @@
+{
+  "name": "ie23s/ie23s",
+  "description": "",
+  "type": "project",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "ie23s",
+      "email": "me@ie23s.com"
+    }
+  ],
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
+  },
+  "require": {
+    "smarty/smarty": "^4.2",
+    "simplon/mysql": "^2.2",
+    "vlucas/phpdotenv": "^5.4",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "myclabs/php-enum": "^1.8",
+    "phpmailer/phpmailer": "^6.6",
+    "soundasleep/html2text": "^2.0",
+    "ext-gd": "*"
+  }
+}

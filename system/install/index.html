@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <title>Bootstrap 4, from LayoutIt!</title>
+
+    <meta content="Source code generated using layoutit.com" name="description">
+    <meta content="LayoutIt!" name="author">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h3 class="me-2">
+                Installation
+            </h3>
+            <div id="stage-req" style="position: relative;">
+                <h4>
+                    Checking requirements
+                </h4>
+                <div class="require" id="requireAlert"
+                     style="border: 1px black solid; border-radius: 15px; padding: 15px; color: red;">
+                    Loading...
+                </div>
+                <form action="./req" data-varf="stageReq" id="stageReqForm" method="post" role="form"
+                      style="margin-top: 20px">
+                    <button class="btn btn-primary" disabled type="submit">
+                        <span aria-hidden="true" class="spinner-border spinner-border-sm ies-loading"
+                              role="status"></span>
+                        <span class="sr-only ies-loading">Loading...</span>
+                        <span class="ies-go" style="display: none;">Refresh</span>
+                    </button>
+                </form>
+                <button class="btn btn-primary" disabled
+                        id="toDBStageButton"
+                        onclick="$('#stage-req').hide(); $('#stage-db').show();" style="position: absolute;right: 0;bottom: 0;">
+                    <span aria-hidden="true" class="spinner-border spinner-border-sm ies-loading" role="status"></span>
+                    <span class="sr-only ies-loading">Loading...</span>
+                    <span class="ies-go" style="display: none;">Continue</span>
+                </button>
+
+            </div>
+            <div id="stage-db" style="display: none; position: relative;">
+                <h4>
+                    Database settings
+                </h4>
+                <form action="./db" data-varf="stageDB" method="post" role="form">
+                    <div class="alert alert-danger" role="alert" style="display: none">
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <label for="DB_HOST">
+                            DB Host
+                        </label>
+                        <input class="form-control" id="DB_HOST" name="DB_HOST" type="text" value="localhost">
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <label for="DB_USER">
+                            DB User
+                        </label>
+                        <input class="form-control" id="DB_USER" name="DB_USER" type="text" value="root">
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <label for="DB_PASS">
+                            DB Password
+                        </label>
+                        <input class="form-control" id="DB_PASS" name="DB_PASS" type="password">
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <label for="DB_NAME">
+                            DB Name
+                        </label>
+                        <input class="form-control" id="DB_NAME" name="DB_NAME" type="text" value="">
+                    </div>
+                    <button class="btn btn-primary" style="margin-bottom: -60px;position: absolute;right: 0;bottom: 0;">
+                        <span aria-hidden="true" class="spinner-border spinner-border-sm ies-loading" role="status"
+                              style="display: none;"></span>
+                        <span class="sr-only ies-loading" style="display: none;">Loading...</span>
+                        <span class="ies-go">Continue</span>
+                    </button>
+                </form>
+            </div>
+            <div id="stage-admin" style="display: none; position: relative;">
+                <h4>
+                    Administrator settings
+                </h4>
+                <form action="./admin-register" data-varf="stageDB" method="post" role="form">
+                    <div class="alert alert-danger" role="alert" style="display: none">
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <label for="USER_EMAIL">
+                            Email
+                        </label>
+                        <input class="form-control" id="USER_EMAIL" name="USER_EMAIL" type="text" placeholder="admin@example.com">
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <label for="USER_NAME">
+                            Username
+                        </label>
+                        <input class="form-control" id="USER_NAME" name="USER_NAME" type="text" placeholder="Admin">
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <label for="USER_PASS">
+                            Password
+                        </label>
+                        <input class="form-control" id="USER_PASS" name="USER_PASS" type="password">
+                    </div>
+                    <div class="form-group mb-3">
+
+                        <label for="USER_PASS_R">
+                            Repeat password
+                        </label>
+                        <input class="form-control" id="USER_PASS_R" name="USER_PASS_R" type="password">
+                    </div>
+                    <button class="btn btn-primary" style="margin-bottom: -60px;position: absolute;right: 0;bottom: 0;">
+                        <span aria-hidden="true" class="spinner-border spinner-border-sm ies-loading" role="status"
+                              style="display: none;"></span>
+                        <span class="sr-only ies-loading" style="display: none;">Loading...</span>
+                        <span class="ies-go">Continue</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("#stageReqForm").submit();
+    });
+    // this is the id of the form
+    let buttonFunc = {
+        loading: function (button) {
+            button.prop("disabled", true);
+            button.find('.ies-loading').show();
+            button.find('.ies-go').hide();
+        },
+        continue: function (button) {
+            button.prop("disabled", false);
+            button.find('.ies-loading').hide();
+            button.find('.ies-go').show();
+        },
+        stopLoading: function (button) {
+            button.find('.ies-loading').hide();
+            button.find('.ies-go').show();
+        },
+        disable: function (button) {
+
+            button.prop("disabled", true);
+        },
+        enable: function (button) {
+
+            button.prop("disabled", false);
+        }
+    }
+    let stageReq = {
+        button: $("#toDBStageButton"),
+        success: function (data, alertm) {
+            let obj = jQuery.parseJSON(data);
+            let rAlert = $("#requireAlert");
+            if (obj.length !== 0) {
+                rAlert.html("");
+                obj.forEach((e) => {
+                    rAlert.append("<p>" + e + "</p>")
+                });
+                buttonFunc.disable(this.button);
+            } else {
+                rAlert.html("Everything's fine!");
+                rAlert.css("color", "green");
+                buttonFunc.enable(this.button)
+            }
+        },
+        complete: function () {
+            buttonFunc.stopLoading(this.button);
+        }
+    }
+    let stageDB = {
+        success: function (data, alertm) {
+            if (data.startsWith("OK")) {
+
+            } else {
+                alertm.html(data);
+                alertm.show()
+            }
+        },
+        complete: function () {
+        }
+    }
+    $("form").submit(function (e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        const alertm = $(this).find(".alert");
+        const form = $(this);
+        const actionUrl = form.attr('action');
+
+        const button = form.find('button');
+        let run;
+        eval("run = " + form.data('varf'));
+        buttonFunc.loading(button);
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: form.serialize(), // serializes the form's elements.
+            success: function (data) {
+                run.success(data, alertm)
+            },
+
+            error: function (xhr, ajaxOptions, thrownError) {
+                alertm.html("Network error!");
+                alertm.show()
+            },
+            complete: function () {
+                run.complete();
+                buttonFunc.continue(button);
+            }
+        });
+
+    });
+
+</script>
+</body>
+</html>

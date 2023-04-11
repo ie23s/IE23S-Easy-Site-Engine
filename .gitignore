@@ -1,0 +1,6 @@
+./.git
+atom-sftp-sync.json
+.remote-sync.json
+.config.env
+.config
+/.idea/**
